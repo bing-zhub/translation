@@ -9,7 +9,7 @@
 让我们从几个简单的例子入手，看看可以用Node-RED来做的事情。我们讲解的目的不是让您用Node-RED编程，而是通过一些高难度的例子让您对它的能力有所了解。如果您真的想直接深入了解，您可以跳到第2课，在那里您将通过创建和运行您的第一个流的步骤。
 第一个例子流将收到包含标签的推特信息，打开和关闭LED时，便收到了一个新的推特。在这个例子中我们假设node-red在Raspberry Pi中的运行--一种对Node-RED用户来说常用的环境
 实例1.1使用推特控制Raspberry Pi
-这个Node-RED流检查推特并检测# LED标签是否连接，打开LED接π如图1.1所示。
+这个Node-RED流检查推特并检测# LED标签是否连接，打开LED接π如下图所示。
 如您所见，非常简便，它由三个节点连接在一起-左边的Twitter节点，中间的触发节点以及右侧的Raspberry Pi （gpio）节点（GPIO代表通用输入/输出给出通用的Raspberry Pi的节点处理IO的名字）。由圆形框表示的节点通常有一个图标来表示它们的类型，例如第一个节点中的Twitter鸟图标和一个可以由程序员设置的文本名称。
 	这三个节点中的每一个都被构建到Node-RED可视化编程工具中，并可以从一个节点调色板拖到主工作区。然后通过将输出选项卡连接到流中下一个节点的输入选项卡（节点框右边或左边的小灰点）来连接它们，下一个讲座将详细讨论UI，但现在让我们把重点放在高级功能上。
 	
@@ -38,15 +38,16 @@ trigger节点是Node-RED中的另一个内置节点，其默认行为是等待�
 
 
 ![示例1.2：当您的锻炼计划落后时，使用Node-RED提醒您](media/15278383287911/Node-RED-Lecture-1-A-brief-introduction-to-Node-RED-54.jpg)
+当您的锻炼计划落后时，使用Node-RED提醒您
 
   我们的第二个例子显示Node-RED不同的用法。不是控制设备例如Raspberry Pi，这个流会结合气象信息和您的Fitbit信息，当天气好且您落后于您的锻炼计划时会向您发送电子邮件警报。这个流有点复杂，使用6个节点，但依旧通过使用内置节点，您仍可以通过很少或没有编程来完成复杂的任务。
  和以前一样，节点从Node-RED UI的节点调色板中拖出来，并在主界面上连接在一起。从最左边的节点，让我们开始一个openweather节点可以配置检查设定的时间间隔在任何主要城市天气。当它检查时，它会将结果打包到一个消息中，该消息被发送至下一个节点，在这种情况下，是指向一个switch节点。switch节点执行一个简单的测试，检查输入消息的值，若测试的值规范且正确，则发送一个值为"1"的消息。在我们的例子中，它被配置为检测温度值（tempc）是否为15摄氏度或更高。
 当switch节点测试为真，或'switches on'状态，它发送一个消息到Fitbit节点--流程中的下一个节点。Fitbit节点是另一个强大的内置的节点，您可以在Fitbit.com网站的门户网站中设置获得您的Fitbit设备统计。Fitbit为您的设备将数据打包到一个消息中并将其发送到的流的下一个节点。
 下一个节点是另一个switch节点。此项已设置成检查您今天走过的步数是否小于1000个。它通过检测Fitbit数据场中的summary.steps是否小于1000。记住，它是从一个向Fitbit.com申请信息的Fitbit节点中刚刚得到这些数据。
-如果您今天走了不到1000步，那么switch节点会生成一条消息，该消息通过流传递给function节点。function节点是一个通用的内置节点，允许您用JavaScript编写自己的函数。下节课将更详细地讨论这个节点。现在，您可以假设这个节点刚刚创建了一个新的信息，信息的主题行和文本正文可以通过电子邮件发送。
-一旦这个消息在function节点中创建，它就通过流发送到最终节点，这是一个email节点。此节点将接收任何传入消息的主体，并将其发送到在初始化节点时配置的电子邮件帐户。在这种情况下，设置成发送消息给您。
+  如果您今天走了不到1000步，那么switch节点会生成一条消息，该消息通过流传递给function节点.function节点是一个通用的内置节点，允许您用JavaScript编写自己的函数。下节课将更详细地讨论这个节点。现在，您可以假设这个节点刚刚创建了一个新的信息，信息的主题行和文本正文可以通过电子邮件发送。
+  一旦这个消息在function节点中创建，它就通过流发送到最终节点，这是一个email节点。此节点将接收任何传入消息的主体，并将其发送到在初始化节点时配置的电子邮件帐户。在这种情况下，设置成发送消息给您。
 虽然例子似乎很简单，只是看看天气和您在Fitbit上的活动，您可以用类似的流检查家庭设备的状态，在您的服务器计算机，在一个工厂等设备，然后您可以使用输出节点发送邮件，Twitter，使用应用程序接口调用后台软件，控制设备-事实上选择是非常多的。Node-RED是一个非常强大的工具，用于连接输入和输出，并提供许多节点，无论是由Node-RED内置或开发，均可执行一系列惊人的任务。
-您可以在以下片段中找到这个流的Node-RED信息：
+  您可以在以下片段中找到这个流的Node-RED信息：
 ```JSON
 [{"id":"78902106.876fe","type":"function","name":"Compose Email","func":"return {\n    topic:\"The weather is good.\",\n    payload:\"Time to go for a walk!\"\n};\n","outputs":1,"noerr":0,"x":597.0000152587891,"y":441.9999084472656,"z":"c211e0ba.3dee2","wires":[["2e121645.d1edea"]]},{"id":"3c06c7e1.c3f938","type":"fitbit","fitbit":"","name":"","dataType":"activities","x":389.0000305175781,"y":510,"z":"c211e0ba.3dee2","wires":[["1e739b5.fe18c65"]]},{"id":"45a12686.ba5ed8","type":"switch","name":"If tempc > 15","property":"payload.tempc","rules":[{"t":"gt","v":"15"}],"checkall":"true","outputs":1,"x":385.0000190734863,"y":460.9999694824219,"z":"c211e0ba.3dee2","wires":[["3c06c7e1.c3f938"]]},{"id":"1e739b5.fe18c65","type":"switch","name":"If summary.steps < 1000","property":"payload.summary.steps","rules":[{"t":"lt","v":"1000"}],"checkall":"true","outputs":1,"x":421.9999885559082,"y":556.9999694824219,"z":"c211e0ba.3dee2","wires":[["78902106.876fe"]]},{"id":"2e121645.d1edea","type":"e-mail","server":"smtp.gmail.com","port":"465","name":"user@email.com","dname":"","x":638.0000152587891,"y":496.9999694824219,"z":"c211e0ba.3dee2","wires":[]},{"id":"bbb34414.444cb8","type":"openweathermap in","name":"Weather Now","lon":"","lat":"","city":"Vancouver","country":"Canada","x":384.0000190734863,"y":410,"z":"c211e0ba.3dee2","wires":[["45a12686.ba5ed8"]]}]
 ```
@@ -54,9 +55,9 @@ trigger节点是Node-RED中的另一个内置节点，其默认行为是等待�
 ![示例1.3使用Node-RED的内置HTTP节点构建简单的Web服务](media/15278383287911/Node-RED-Lecture-1-A-brief-introduction-to-Node-RED-55.jpg)
 
 
-我们在这个高级介绍中的最后一个例子是另一类流。它显示了如何创建一个简单的Web服务响应浏览器因数据查询所发送的一个HTTP请求，然后提供一个用图形表示数据的网页返回给浏览器-基本上Node-RED仅仅用了几个节点便提供了一个Web服务器和一些简单的服务。
-加入之前介绍的Fitbit节点，这个例子创建了一个简单的Web服务，可以让您查询您一天的Fitbit数据，使用好看的圈图，通过运动显示您"烧掉"多少卡路里。
-流程图如图1.3所示，由4个节点组成。第一个和最后一个节点是HTTP输入和输出节点，它们共同工作以监听HTTP请求并发送HTTP响应。此流监听来自任何数据源的HTTP请求，但我们假设这里有一个常用浏览器。当它到来时，它查询您来自Fitbit.com的Fitbit数据，然后使用一个template节点建立一个HTTP页面，并将其传送至送回网页至浏览器的HTTP输出节点
+  我们在这个介绍中的最后一个例子是另一类流。它显示了如何创建一个简单的Web服务响应浏览器因数据查询所发送的一个HTTP请求，然后提供一个用图形表示数据的网页返回给浏览器-基本上Node-RED仅仅用了几个节点便提供了一个Web服务器和一些简单的服务。
+  加入之前介绍的Fitbit节点，这个例子创建了一个简单的Web服务，可以让您查询您一天的Fitbit数据，使用好看的圈图，通过运动显示您"烧掉"多少卡路里。
+  流程图如上图所示，由4个节点组成。第一个和最后一个节点是HTTP输入和输出节点，它们共同工作以监听HTTP请求并发送HTTP响应。此流监听来自任何数据源的HTTP请求，但我们假设这里有一个常用浏览器。当它到来时，它查询您来自Fitbit.com的Fitbit数据，然后使用一个template节点建立一个HTTP页面，并将其传送至送回网页至浏览器的HTTP输出节点
  
   同样，这只是为了让您对Node-RED的能力和灵活性有所了解，而不需要了解流如何工作的所有细节。在以后的讲解中您会有更多的了解。在一个较高的水平，HTTP输入节点已配置为监听对组合的托管服务URL的HTTP请求，再加上您的登录名{用户名}和/ Fitbit字符串。这将会在第二讲中得到更详细的解释。
 	当一个HTTP请求到达时，HTTP输入节点创建一个消息触发Fitbit的节点，这是流中的下一个节点。Fitbit节点为用户获得当前数据，然后作为信息传输这些数据至template节点。HTML template节点是Node-RED中的另一个内置节点，它与function节点一样，允许您自由编写代码。然而，不需要使用function节点那样的JavaScript格式，template节点如同HTML一样与文本协同工作。
@@ -89,9 +90,9 @@ trigger节点是Node-RED中的另一个内置节点，其默认行为是等待�
 然后用户会看到一个简单的甜甜圈卡路里消耗量图表（见图1.4）--所有这些都是由一个简单的Node-RED流构建和服务的！
 
   ![一个甜甜圈饼图，从Fitbit送达Node-RED显示卡路里计数](media/15278383287911/Node-RED-Lecture-1-A-brief-introduction-to-Node-RED-56.jpg)
+    一个甜甜圈饼图，从Fitbit送达Node-RED显示卡路里计数
 
-
-您可以在如下网址中找到这个Node-RED流中的信息:
+您可以在如下找到这个Node-RED流中的信息:
 ```JSON
 [{"id":"5e17aecb.a1e85","type":"http in","name":"public/{username}/fitbit","url":"/public/fitbit","method":"get","swaggerDoc":"","x":158.0994415283203,"y":103.09091186523438,"z":"a59638c4.5a69c8","wires":[["ad752c2a.528ad"]]},{"id":"50026922.affd98","type":"template","name":"Response Body","field":"payload","format":"handlebars","template":"<!doctype html>\n<head>\n    <title>A Node RED Example</title>\n    <link rel=\"stylesheet\" href=\"//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css\">\n    <script src=\"//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js\"></script>\n    <script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n    <script src=\"//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js\"></script>\n</head>\n<html> \n    <div id=\"chart-example\" style=\"height: 250px;\"></div>\n    <script>\n        Morris.Donut({\n          element: 'chart-example',\n          data: [\n            {label: \"Activity Calories\", value: {{payload.summary.activityCalories}} },\n            {label: \"Calories BMR\", value: {{payload.summary.caloriesBMR}} },\n            {label: \"Calories Out\", value: {{payload.summary.caloriesOut}} }\n          ]\n        });\n    </script>\n</html>\n","x":412.0994415283203,"y":102.09091186523438,"z":"a59638c4.5a69c8","wires":[["2bfb3fab.d404c"]]},{"id":"2bfb3fab.d404c","type":"http response","name":"","x":513.0994415283203,"y":146.09091186523438,"z":"a59638c4.5a69c8","wires":[]},{"id":"ad752c2a.528ad","type":"fitbit","fitbit":"","name":"","dataType":"activities","x":280.0993194580078,"y":149.09091186523438,"z":"a59638c4.5a69c8","wires":[["50026922.affd98"]]}]
 ```
@@ -101,7 +102,7 @@ trigger节点是Node-RED中的另一个内置节点，其默认行为是等待�
 正如前面的示例所示，Node-RED是构建物联网应用程序和服务的强大工具。其成因正是由于物联网原型应用极其服务。Node-RED是由IBM新兴技术组特别是通过两研究员Nick O'Leary和Dave Conway Jones的一个开源项目。他们最初将Node-RED作为自己的工具，因为他们正在研究物联网项目，并正在"寻找一种方法来简化在为客户构建概念技术中连接系统和传感器过程"。
 	2013年初，一个初始版本的Node-RED作为开源项目发布，并在2014期间建立了一个小型但活跃的用户和开发组。在编写的时候，结红色的仍然是一个新兴的技术，但已从创始人，实验者和一些有自己需求的大小公司中看到了显着的青睐。
 	如今已经发展成了一个充满着活跃用户与开发人员的社区，核心小组致力于Node-RED代码本身并且大多数开发人员为流库贡献节点或流。您可以查看邮件列表和GitHub库附录A中提供的链接，或者直接google这些链接。
-由于Node-RED仍然是一个迅速发展的技术，要注意事物可以很快发生改变。这些文稿都写于Node-RED的0.11.0更新，事例也包含在内。然而，和任何新技术一样，如果事情不按您期望的方式运行，检查兼容性总是明智之举。
+由于Node-RED仍然是一个迅速发展的技术，要注意事物可以很快发生改变。这些文稿都写于Node-RED的0.11.0更新(整理翻译时已到**0.18.7**)，事例也包含在内。然而，和任何新技术一样，如果事情不按您期望的方式运行，检查兼容性总是明智之举。
 
 ## Node-RED与物联网
   当IBM人员创建Node-RED时，他们主要关注物联网，即将设备连接到处理和处理设备。作为物联网快速应用开发的工具，Node-RED既强大又灵活。它的能力来自两个因素的组合：
