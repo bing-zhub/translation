@@ -6,6 +6,7 @@
 ## [Node-RED入门教程](https://github.com/bing-zhub/translation/blob/master/Node-RED%20Tutorial/Node-RED%20Tutorial%20Home.md)
 ### [目录](https://github.com/bing-zhub/translation/blob/master/Node-RED%20Tutorial/Node-RED%20Tutorial%20Home.md)
 ### [Node-RED介绍](https://github.com/bing-zhub/translation/blob/master/Node-RED%20Tutorial/Node-RED%20Tutorial%201%20--%20%E7%AE%80%E4%BB%8B.md)
+### [Node-RED第一个流](https://github.com/bing-zhub/translation/blob/master/Node-RED%20Tutorial/Node-RED%20Tutorial%202%20--%20%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%B5%81.md)
 
 
 
