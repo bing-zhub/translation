@@ -10,9 +10,9 @@
 
  Pub / Sub系统是连接松散耦合的分布式系统的一种良好方式，它们很好地映射到设备或事物生成要共享的事件的典型IoT模式。 除了异步以外，MQTT协议也是轻量级的，并不像HTTP那么高; 对于资源有限的设备来说，这是一个重要的优点。 MQTT最初是在20世纪90年代后期开发的，现在已被用于各种IoT设置。 MQTT在2014年成为OASIS标准，是许多IoT工具箱的标准组成部分。 MQTT实际上代表消息队列遥测传输。
 
-要使用mqtt节点，您需要访问代理。这些是一些免费的MQTT服务器，例如http://test.mosquitto.org/，或者在本讲座中使用的服务器www.hivemq.com。 使用代理地址和主题，您可以配置mqtt输入节点以订阅该主题，导致在该主题上发布新数据时生成新消息。 该消息将包含已发布数据的信息，包括msg.payload中的数据本身和msg.topic中的MQTT代理主题。
+要使用mqtt节点，您需要访问代理。这些是一些免费的MQTT服务器，例如http://test.mosquitto.org/ ，或者在本讲座中使用的服务器www.hivemq.com。 使用代理地址和主题，您可以配置mqtt输入节点以订阅该主题，导致在该主题上发布新数据时生成新消息。 该消息将包含已发布数据的信息，包括msg.payload中的数据本身和msg.topic中的MQTT代理主题。
 
-为了让您开始使用mqtt节点，您将使用免费的mqqt代理hivemq，这可以通过（http://www.hivemq.com/showcase/public-mqtt-broker/）获得。 当然，您可以使用任何MQTT代理，如果您已经安装了一个，您也可以使用您自己的代理。
+为了让您开始使用mqtt节点，您将使用免费的mqqt代理hivemq，这可以通过（http://www.hivemq.com/showcase/public-mqtt-broker/） 获得。 当然，您可以使用任何MQTT代理，如果您已经安装了一个，您也可以使用您自己的代理。
 
 首先，拖放一个mqtt输入节点并为代理配置它。 不要忘记将主题配置为独特的东西，在这个例子中，我们使用noderedlecture / sensor，但是您应该使用自己独特的主题，例如<您的名字\> / sensor
 
@@ -208,7 +208,7 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
 一开始，我们连接一个inject，function，tcp request和debug节点，如图3.22所示。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-21.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image021.png)
+![5b5f2e24a0001](https://i.loli.net/2018/07/30/5b5f2e24a0001.jpg)
 
  图3.22构建TCP REQUEST并在tcp输出节点上发送
 
@@ -216,25 +216,25 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
 该字符串是标准的HTTP请求，表示它是GET请求，协议是HTTP 1.1，主机是www.google.com。 \ r \ n \ r \ n是HTTP协议中需要的两个返回/换行符号。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-22.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image022.png)
+![5b5f2e33d1218](https://i.loli.net/2018/07/30/5b5f2e33d1218.jpg)
 
   图3.23在function节点中构建TCP REQUEST
 
 配置tcp request节点连接到端口80上的www.google.com服务器。配置它在1秒（1000毫秒）后关闭连接，如图3.24所示。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-23.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image023.png)
+![5b5f2e4213956](https://i.loli.net/2018/07/30/5b5f2e4213956.jpg)
 
  图3.24配置TCP REQUEST的终点
 
 tcp request节点响应是一个缓冲区，需要解析。 配置第二个功能节点来解析tcp request节点响应，如图3.25所示
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-24.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image024.png)
+![5b5f2e52424a4](https://i.loli.net/2018/07/30/5b5f2e52424a4.jpg)
 
 图3.25。 将响应缓冲区解析为字符串的函数节点
 
  如果您部署流程并单击inject，您将向Google发出请求，并获得TCP响应。 调试节点将以如图3.26所示的字符串形式打印响应。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-25.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image025.png)
+![5b5f2e695ebad](https://i.loli.net/2018/07/30/5b5f2e695ebad.jpg)
 
 图3.26打印通过TCP连接发送的形式良好的HTTP请求的响应。
 
