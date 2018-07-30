@@ -16,13 +16,11 @@
 
 首先，拖放一个mqtt输入节点并为代理配置它。 不要忘记将主题配置为独特的东西，在这个例子中，我们使用noderedlecture / sensor，但是您应该使用自己独特的主题，例如<您的名字\> / sensor
 
-![http://noderedguide.com/wp-content/uploads/2016/03/Screen-Shot-2016-12-29-at-8.54.08-PM.png](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image001.png)
+![5b5f2bd7b1aef](https://i.loli.net/2018/07/30/5b5f2bd7b1aef.png)图片3.1配置具有代理地址和主题的mqtt节点
 
-图片3.1配置具有代理地址和主题的mqtt节点
+ 有很多方法可以将mqtt消息发送到hivemq。 您可以使用他们的websockets客户端展示http://www.hivemq.com/demos/websocket-client/ mqtt仪表板http://www.mqtt-dashboard.com/dashboard 或您自己的库。 您将在此示例中使用其Websocket客户端，导航到该页面并连接到代理。 您将发布JSON编码的字符串到您配置Topic从而检测的mqtt节点和json节点两个节点的作用
 
- 有很多方法可以将mqtt消息发送到hivemq。 您可以使用他们的websockets客户端展示（http://www.hivemq.com/demos/websocket-client/），mqtt仪表板（http://www.mqtt-dashboard.com/dashboard）或您自己的库。 您将在此示例中使用其Websocket客户端，导航到该页面并连接到代理。 您将发布JSON编码的字符串到您配置Topic从而检测的mqtt节点和json节点两个节点的作用
-
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-1.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image002.png)
+![5b5f2c0f5c14e](https://i.loli.net/2018/07/30/5b5f2c0f5c14e.jpg)
 
 图片3.2 使用HiveMQ客户端界面发送MQTT信息
 
@@ -32,7 +30,7 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
 如果将通常的调试节点连接到json节点并部署，则使用HiveMQ仪表板发送JSON字符串{“analyze”：false，“value”：10}，如图3.2所示。 您将看到它在调试选项卡中打印（图3.3）。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-2.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image003.png)
+![5b5f2c292bd6c](https://i.loli.net/2018/07/30/5b5f2c292bd6c.jpg)
 
 图片3.3接收和解析作为JSON字符串发送的MQTT消息
 
@@ -48,19 +46,19 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
 拖动开关节点并双击它。 配置它来评估属性“msg.payload.analyze”。 如果为true，则将消息发送到第一个输出; 如果为false，则将其发送到第二个输出，如图3.4所示。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-3.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image004.png)
+![5b5f2c3bb0b71](https://i.loli.net/2018/07/30/5b5f2c3bb0b71.jpg)
 
 图片3.4 配置switch节点来根据数据属性传输数据
 
  现在你可以连接两个debug节点（如图3.5）——当你为一个节点设置许多输出时，它们从上到下进行编号，因此输出1在上面，输出2在底部在图3.5中。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-4.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image005.png)
+![5b5f2c48a62f4](https://i.loli.net/2018/07/30/5b5f2c48a62f4.jpg)
 
  图片3.5 将switch 节点连接到两个debug节点
 
 如果现在返回HiveMQ输入页面并发送MQTT消息{“analyze”：true，“value”：6}，您将看到第一个（顶部）输出被激活，传入的消息被发送了，或者“switched“ 至输出1.如果发送原始消息{”analyze“：false，”value“：10}，switch节点将激活输出2，原始调试节点将触发。 将指针悬停在调试消息上将显示哪个调试节点正在打印出消息，如图3.6所示。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-5.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image006.png)
+![5b5f2c59cbb49](https://i.loli.net/2018/07/30/5b5f2c59cbb49.jpg)
 
 图片3.6确认switch节点的发送
 
@@ -78,19 +76,19 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
  首先，我们拖放一个change节点并将其连接到switch机节点的第二个输出（图3.7）。 这是msg.payload.analyze设置为false时触发的输出。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-6.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image007.png)
+![5b5f2c6874cde](https://i.loli.net/2018/07/30/5b5f2c6874cde.jpg)
 
   图片3.7添加一个change节点并设置新的信息属性
 
  现在配置它，将属性msg.payload.note设置为“this is not being analyzed”，如图3.8所示。
 
- ![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-7.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image008.png)
+![5b5f2c77264fc](https://i.loli.net/2018/07/30/5b5f2c77264fc.jpg)
 
  图片3.8添加一个change节点并设置新的信息属性
 
  当您收到switch节点在第二个输出上发送的消息时，它将被修改为包含一个“note”元素，其中的字符串“this is not being analyzed”。 如果通过从HiveMQ发送MQTT消息来部署和测试流程，您将看到如图3.9所示的输出。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-8.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image009.png)
+![5b5f2c842da5f](https://i.loli.net/2018/07/30/5b5f2c842da5f.jpg)
 
   图片3.9 交换和改变信息之后的结果
 
@@ -106,25 +104,27 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
 我们连接一个change节点和一个这样的rbe节点。 要提醒我们这个输出处理将其添加标志“analyze”，添加一个comment节点并写“Analyze = true”。 编写复杂流时，注释很有用。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-9.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image010.png)
+![5b5f2c9257360](https://i.loli.net/2018/07/30/5b5f2c9257360.jpg)
 
  图片3.10 添加一个rbe节点来检测输入数据是否被改变超过20%
 
  编辑change节点将msg.payload设置为msg.payload.value。 这将该节点的输出设置为接收到的输入中的msg.payload.value元素中的值（图3.11）
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-10.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image011.png)
+![5b5f2ca3f3cb6](https://i.loli.net/2018/07/30/5b5f2ca3f3cb6.jpg)
 
 图片3.11 使用change节点来设置接收信息
 
- 由于您要确定此值是否已经更改了20％或更多，您需要双击rbe节点并将其配置为阻止，除非该值更改超过20％。
+ ![5b5f2cb2ce023](https://i.loli.net/2018/07/30/5b5f2cb2ce023.jpg)
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-11.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image012.png)
+由于您要确定此值是否已经更改了20％或更多，您需要双击rbe节点并将其配置为阻止，除非该值更改超过20％。\
 
 图片3.12设置rbe节点来检测接收信息的值
 
+![5b5f2cfc0d003](https://i.loli.net/2018/07/30/5b5f2cfc0d003.jpg)
+
  要测试流程，请部署此流程，然后返回HiveMQ页面并发送一系列消息。 首先，您需要将分析值设置为true，以便交换节点通过输出1上的消息发送。如果使用原始消息值6，则将无法通过rbe节点。 如果然后发送值为10的第二个消息，则rbe节点将评估6到10之间的差异，显而易见这是大于20％的，则rbe节点发送消息到最终调试节点，该调试节点将在调试窗格上打印，如图3.13所示。
 
- ![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-12.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image013.png)
+![5b5f2cd79c2cb](https://i.loli.net/2018/07/30/5b5f2cd79c2cb.jpg)
 
  图片3.13使用rbe节点确认10比6大20％以上。
 
@@ -138,7 +138,7 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
  要做到这一点，选择您上面配置的change节点（设置msg.payload）并复制ctrl + c，然后ctrl + v。 附加一个范围节点，如图3.14所示。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-13.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image014.png)
+![5b5f2d2a3081a](https://i.loli.net/2018/07/30/5b5f2d2a3081a.jpg)
 
   图片3.14使用range node配置输入数据
 
@@ -148,13 +148,13 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
  然后返回HiveMQ测试页面，并将{“analyze”：false，“value”：10}作为新的MQTT消息发送到同一主题。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-14.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image015.png)
+![5b5f2d739e512](https://i.loli.net/2018/07/30/5b5f2d739e512.jpg)
 
 图片3.15在scale节点中为输入输出设置缩放范围
 
  如果返回到Node-RED窗口，您将看到与流程的下半部分关联的debug节点已经触发，显示出当您将其发布到MQTT中设置为10的msg.payload.value属性已按比例放大为255，如图3.16所示。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-15.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image016.png)
+![5b5f2d8c4b396](https://i.loli.net/2018/07/30/5b5f2d8c4b396.jpg)
 
 图3.16关闭分析时的最终缩放输出
 
@@ -174,25 +174,25 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
 将一个inject，websocket in，websocket out和一个debug节点拖到工作区上并连接它们，如图3.18所示。
 
-  ![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-17.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image017.png)
+![5b5f2d9d9bb06](https://i.loli.net/2018/07/30/5b5f2d9d9bb06.jpg)
 
  图3.18在Node-RED流中使用websockets进行通信
 
 配置inject节点发送“Hello There”的字符串有效负载（图3.19）
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-18.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image018.png)
+![5b5f2dadc2e3e](https://i.loli.net/2018/07/30/5b5f2dadc2e3e.jpg)
 
 图3.19配置在websocket上发送的注入节点
 
 配置websocket节点以连接到wss：//echo.websocket.org，如图3.20所示。
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-19.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image019.png)
+![5b5f2dc024efc](https://i.loli.net/2018/07/30/5b5f2dc024efc.jpg)
 
 图3.20配置websocket发送到公共echo服务器。 对于out节点也一样
 
  部署，当您点击inject节点时，您将看到如图3.21所示打印的消息
 
-![http://noderedguide.com/wp-content/uploads/2015/11/Node-RED-Lecture-3-Basic-nodes-and-flows-20.jpg](file:////Users/bing/Library/Group%20Containers/UBF8T346G9.Office/TemporaryItems/msohtmlclip/clip_image020.png)
+![5b5f2dcfa0b02](https://i.loli.net/2018/07/30/5b5f2dcfa0b02.jpg)
 
 图3.21从监听处的传入数据的websocket输出
 
