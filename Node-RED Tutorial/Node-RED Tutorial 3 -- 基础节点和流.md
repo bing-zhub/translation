@@ -37,9 +37,9 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
  如果仔细观察输出，可以看到msg.payload包含一个对象，它本身有两个字段，分析和赋值，每个都有自己的值。 正如您在讲座2中看到的，您可以通过msg.payload.analyze和msg.payload.value访问这些字段。 我们来看看可以做到这一点的节点。
 
  您可以在以下网址找到此流程的Node RED信息 ：
-
-[https://raw.githubusercontent.com/SenseTecnic/nrguideflows/master/lesson3/3-1_mqqtmessages.json](https://www.google.com/url?q=https://raw.githubusercontent.com/SenseTecnic/nrbookflows/master/lesson3/3-1_mqqtmessages.json&sa=D&usg=AFQjCNFyKaJHmOh8VGbmZCJ7dRREnuWl6g)
-
+```json
+[{"id":"6ec4dcef.913b24","type":"mqtt-broker","broker":"broker.mqtt-dashboard.com","port":"1883","clientid":""},{"id":"6304660c.9cfb98","type":"mqtt in","name":"","topic":"noderedlecture/sensor","broker":"6ec4dcef.913b24","x":190.0994415283203,"y":150.09091186523438,"z":"a2a2c218.5d5d4","wires":[["d0760869.2f89f8"]]},{"id":"d0760869.2f89f8","type":"json","name":"","x":330.6988220214844,"y":92.18182373046875,"z":"a2a2c218.5d5d4","wires":[["f1f1bca2.0e0e4"]]},{"id":"f1f1bca2.0e0e4","type":"debug","name":"","active":true,"console":"false","complete":"false","x":448.0994415283203,"y":155.09091186523438,"z":"a2a2c218.5d5d4","wires":[]}]
+```
 ## 示例3.2使用switch节点来处理JSON对象
 
 拥有JSON对象的一个很好的功能就是可以轻松地对其属性执行操作。 这时一个有用的节点是switch节点。 它的作用是根据传入的消息属性来“切换”或发送消息。 例如，您可以检查msg.payload.analyze属性，并根据其值（true / false）决定将消息发送到其中一个switch节点的输出。
@@ -66,7 +66,9 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
 您可以在以下网址找到此流程的Node RED信息：
 
-[https://raw.githubusercontent.com/SenseTecnic/nrguideflows/master/lesson3/3-2_switchnode.json](https://raw.githubusercontent.com/SenseTecnic/nrguideflows/master/lesson3/3-2_switchnode.json)
+```json
+[{"id":"6ec4dcef.913b24","type":"mqtt-broker","broker":"broker.mqtt-dashboard.com","port":"1883","clientid":""},{"id":"14e78330.eb187d","type":"mqtt in","name":"","topic":"noderedlecture/sensor","broker":"6ec4dcef.913b24","x":171.0994415283203,"y":332.0909118652344,"z":"a2a2c218.5d5d4","wires":[["dfc34d9.f203cb"]]},{"id":"67d23918.982dc8","type":"switch","name":"","property":"payload.analyze","rules":[{"t":"true"},{"t":"false"}],"checkall":"true","outputs":2,"x":354.6987609863281,"y":332.18182373046875,"z":"a2a2c218.5d5d4","wires":[["6d8dd36.f92722c"],["4a938f5.fb56c7"]]},{"id":"dfc34d9.f203cb","type":"json","name":"","x":282.69883728027344,"y":274.18182373046875,"z":"a2a2c218.5d5d4","wires":[["67d23918.982dc8"]]},{"id":"6d8dd36.f92722c","type":"debug","name":"","active":true,"console":"false","complete":"false","x":515.0994262695312,"y":278.0909118652344,"z":"a2a2c218.5d5d4","wires":[]},{"id":"4a938f5.fb56c7","type":"debug","name":"","active":true,"console":"false","complete":"false","x":510.09942626953125,"y":367.0909118652344,"z":"a2a2c218.5d5d4","wires":[]}]
+```
 
 ## 示例3.3使用change节点更改或操作消息内容
 
@@ -94,7 +96,9 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
 您可以在以下网址找到此流程的Node RED信息：
 
-[https://raw.githubusercontent.com/SenseTecnic/nrguideflows/master/lesson3/3-3_changenode.json](https://www.google.com/url?q=https://raw.githubusercontent.com/SenseTecnic/nrbookflows/master/lesson3/3-3_changenode.json&sa=D&usg=AFQjCNGoD2oT5d801TLJtXMJfvhymXgl1Q)
+```js
+[{"id":"6ec4dcef.913b24","type":"mqtt-broker","broker":"broker.mqtt-dashboard.com","port":"1883","clientid":""},{"id":"3880a946.c77f56","type":"mqtt in","name":"","topic":"noderedlecture/sensor","broker":"6ec4dcef.913b24","x":123.09944152832031,"y":515,"z":"a2a2c218.5d5d4","wires":[["ce7bdcab.31842"]]},{"id":"4848edd7.b7b714","type":"switch","name":"","property":"payload.analyze","rules":[{"t":"true"},{"t":"false"}],"checkall":"true","outputs":2,"x":306.6987609863281,"y":515.0909118652344,"z":"a2a2c218.5d5d4","wires":[["28ebaa52.d71456"],["6ebc384d.9143c8"]]},{"id":"ce7bdcab.31842","type":"json","name":"","x":234.69883728027344,"y":457.0909118652344,"z":"a2a2c218.5d5d4","wires":[["4848edd7.b7b714"]]},{"id":"6ebc384d.9143c8","type":"change","name":"","rules":[{"t":"set","p":"payload.note","to":"this is not being analysed"}],"action":"","property":"","from":"","to":"","reg":false,"x":374.6988067626953,"y":564.0909423828125,"z":"a2a2c218.5d5d4","wires":[["3596e410.ca691c"]]},{"id":"3596e410.ca691c","type":"debug","name":"","active":true,"console":"false","complete":"false","x":574.6988372802734,"y":543.0909423828125,"z":"a2a2c218.5d5d4","wires":[]},{"id":"28ebaa52.d71456","type":"debug","name":"","active":true,"console":"false","complete":"false","x":489.09942626953125,"y":478,"z":"a2a2c218.5d5d4","wires":[]}]
+```
 
 ## 示例3.4使用rbe（report by exception）节点
 
@@ -130,7 +134,9 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
 您可以在以下网址找到此流程的Node RED信息：
 
-[https://raw.githubusercontent.com/SenseTecnic/nrguideflows/master/lesson3/3-4_rbenode.json](https://www.google.com/url?q=https://raw.githubusercontent.com/SenseTecnic/nrbookflows/master/lesson3/3-4_rbenode.json&sa=D&usg=AFQjCNEhJze_vy9tf7LWjCqhHQyz8qtMfQ)
+```json 
+[{"id":"6ec4dcef.913b24","type":"mqtt-broker","broker":"broker.mqtt-dashboard.com","port":"1883","clientid":""},{"id":"e5b87c48.1a478","type":"mqtt in","name":"","topic":"noderedlecture/sensor","broker":"6ec4dcef.913b24","x":109.09944152832031,"y":741.9090576171875,"z":"a2a2c218.5d5d4","wires":[["faeb9330.05147"]]},{"id":"1051d99c.efae26","type":"debug","name":"","active":true,"console":"false","complete":"payload","x":652.6988220214844,"y":701.9090576171875,"z":"a2a2c218.5d5d4","wires":[]},{"id":"68014717.97feb8","type":"switch","name":"","property":"payload.analyze","rules":[{"t":"true"},{"t":"false"}],"checkall":"true","outputs":2,"x":292.6987609863281,"y":741.9999694824219,"z":"a2a2c218.5d5d4","wires":[["845f6b52.7ba098"],["e664669.f199b98"]]},{"id":"faeb9330.05147","type":"json","name":"","x":220.69883728027344,"y":683.9999694824219,"z":"a2a2c218.5d5d4","wires":[["68014717.97feb8"]]},{"id":"2f9686ca.d0697a","type":"comment","name":"Analyze = true","info":"","x":404.6988525390625,"y":656.9999694824219,"z":"a2a2c218.5d5d4","wires":[]},{"id":"bb7c3be1.4483c8","type":"rbe","name":"rbe","func":"deadband","gap":"20%","x":599.6988220214844,"y":652.9999694824219,"z":"a2a2c218.5d5d4","wires":[["1051d99c.efae26"]]},{"id":"845f6b52.7ba098","type":"change","name":"","rules":[{"t":"set","p":"payload","to":"msg.payload.value"}],"action":"","property":"","from":"","to":"","reg":false,"x":422.6988220214844,"y":692.9999694824219,"z":"a2a2c218.5d5d4","wires":[["bb7c3be1.4483c8"]]},{"id":"e664669.f199b98","type":"change","name":"","rules":[{"t":"set","p":"payload.note","to":"this is not being analysed"}],"action":"","property":"","from":"","to":"","reg":false,"x":434.6988067626953,"y":782.9999694824219,"z":"a2a2c218.5d5d4","wires":[["383f2d9b.c7c0d2"]]},{"id":"383f2d9b.c7c0d2","type":"debug","name":"","active":true,"console":"false","complete":"false","x":652.6988220214844,"y":753.9999694824219,"z":"a2a2c218.5d5d4","wires":[]}]
+```
 
 ## 示例3.5使用range节点缩放输入
 
@@ -160,7 +166,9 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
  您可以在以下网址找到此流程的Node RED信息:
 
-[https://raw.githubusercontent.com/SenseTecnic/nrguideflows/master/lesson3/3-6_mqqtout.json](https://www.google.com/url?q=https://raw.githubusercontent.com/SenseTecnic/nrbookflows/master/lesson3/3-6_mqqtout.json&sa=D&usg=AFQjCNEYMv4nvL-NSdogbu6EloAtocR6Pw)
+```json
+[{"id":"6ec4dcef.913b24","type":"mqtt-broker","broker":"broker.mqtt-dashboard.com","port":"1883","clientid":""},{"id":"69080c4b.96f7f4","type":"mqtt in","name":"","topic":"noderedlecture/sensor","broker":"6ec4dcef.913b24","x":114.09944152832031,"y":957.6363525390625,"z":"a2a2c218.5d5d4","wires":[["ff3b2fc.f00c4d"]]},{"id":"60e9547d.9f16ac","type":"debug","name":"","active":true,"console":"false","complete":"payload","x":657.6988220214844,"y":917.6363525390625,"z":"a2a2c218.5d5d4","wires":[]},{"id":"7703fe34.88fc","type":"switch","name":"","property":"payload.analyze","rules":[{"t":"true"},{"t":"false"}],"checkall":"true","outputs":2,"x":297.6987609863281,"y":957.7272644042969,"z":"a2a2c218.5d5d4","wires":[["55768737.aa8978"],["7020d33.f8fdf2c","2d0354b2.d2fcac"]]},{"id":"ff3b2fc.f00c4d","type":"json","name":"","x":225.69883728027344,"y":899.7272644042969,"z":"a2a2c218.5d5d4","wires":[["7703fe34.88fc"]]},{"id":"6d28b8c1.92d748","type":"comment","name":"Analyze = true","info":"","x":409.6988525390625,"y":872.7272644042969,"z":"a2a2c218.5d5d4","wires":[]},{"id":"db93bc20.246c4","type":"comment","name":"Analyze = false","info":"","x":411.6988220214844,"y":1080.7272644042969,"z":"a2a2c218.5d5d4","wires":[]},{"id":"a9319158.56ce7","type":"rbe","name":"rbe","func":"deadband","gap":"20%","x":604.6988220214844,"y":868.7272644042969,"z":"a2a2c218.5d5d4","wires":[["60e9547d.9f16ac"]]},{"id":"55768737.aa8978","type":"change","name":"","rules":[{"t":"set","p":"payload","to":"msg.payload.value"}],"action":"","property":"","from":"","to":"","reg":false,"x":427.6988220214844,"y":908.7272644042969,"z":"a2a2c218.5d5d4","wires":[["a9319158.56ce7"]]},{"id":"2b40b78c.d4bf48","type":"range","minin":"0","maxin":"10","minout":"0","maxout":"255","action":"clamp","round":false,"name":"","x":569.6988220214844,"y":1072.7272644042969,"z":"a2a2c218.5d5d4","wires":[["3530448c.cacfbc"]]},{"id":"2d0354b2.d2fcac","type":"change","name":"","rules":[{"t":"set","p":"payload","to":"msg.payload.value"}],"action":"","property":"","from":"","to":"","reg":false,"x":424.6988220214844,"y":1041.7272644042969,"z":"a2a2c218.5d5d4","wires":[["2b40b78c.d4bf48"]]},{"id":"3530448c.cacfbc","type":"debug","name":"","active":true,"console":"false","complete":"false","x":659.6988220214844,"y":1021.7272644042969,"z":"a2a2c218.5d5d4","wires":[]},{"id":"7020d33.f8fdf2c","type":"change","name":"","rules":[{"t":"set","p":"payload.note","to":"this is not being analysed"}],"action":"","property":"","from":"","to":"","reg":false,"x":439.6988067626953,"y":998.7272644042969,"z":"a2a2c218.5d5d4","wires":[["9d7e4096.6281c"]]},{"id":"9d7e4096.6281c","type":"debug","name":"","active":true,"console":"false","complete":"false","x":657.6988220214844,"y":969.7272644042969,"z":"a2a2c218.5d5d4","wires":[]}]
+```
 
 ## 示例3.7在 Node-RED上使用 Websockets
 
@@ -198,7 +206,9 @@ Node-RED的json节点是一种方便的功能，因为它解析了传入的消�
 
  您可以在以下网址找到此流程的Node RED信息:
 
-[https://raw.githubusercontent.com/SenseTecnic/nrguideflows/master/lesson3/3-7_websockets.json](https://www.google.com/url?q=https://raw.githubusercontent.com/SenseTecnic/nrbookflows/master/lesson3/3-7_websockets.json&sa=D&usg=AFQjCNFYpoisXXloDV4_9dNKGLv5XLdWog)
+```json
+[{"id":"6ec4dcef.913b24","type":"mqtt-broker","broker":"broker.mqtt-dashboard.com","port":"1883","clientid":""},{"id":"604724b6.9fb8dc","type":"mqtt out","name":"","topic":"noderedlecture/sensor","qos":"","retain":"","broker":"6ec4dcef.913b24","x":414.99998474121094,"y":733.9999694824219,"z":"53cf281b.ac30d8","wires":[]},{"id":"ec38975a.13c768","type":"inject","name":"{\"analyze\":false, \"value\":10}","topic":"","payload":"{\"analyze\":false, \"value\":6}","payloadType":"string","repeat":"","crontab":"","once":false,"x":144,"y":680.9999694824219,"z":"53cf281b.ac30d8","wires":[["604724b6.9fb8dc"]]},{"id":"83e4684e.7c1b98","type":"inject","name":"{\"analyze\":true, \"value\":6}","topic":"","payload":"{\"analyze\":true, \"value\":6}","payloadType":"string","repeat":"","crontab":"","once":false,"x":156,"y":730.9999694824219,"z":"53cf281b.ac30d8","wires":[["604724b6.9fb8dc"]]},{"id":"47a5dc83.b85a24","type":"inject","name":"{\"analyze\":true, \"value\":1}","topic":"","payload":"{\"analyze\":true, \"value\":10}","payloadType":"string","repeat":"","crontab":"","once":false,"x":153,"y":779.9999694824219,"z":"53cf281b.ac30d8","wires":[["604724b6.9fb8dc"]]}]
+```
 
 ## 示例3.8发送TCP REQUEST。
 
@@ -241,8 +251,10 @@ tcp request节点响应是一个缓冲区，需要解析。 配置第二个功�
 有些人可能会想知道为什么需要使用一个function节点构建我们通过TCP发送的HTTP请求。 为什么不用inject节点输入字符串？ 原因是inject节点“escapes”其使用的字符串，导致插入的返回/换行被删除。 这反过来会让接收服务器（Google）在等待丢失的返回/换行符时将其不返回响应。 因此，您可以在function节点中构建字符串。即使对经验丰富的Node-RED程序员来说这也算是“我靠这也许”之一，所以总是阅读节点的信息窗格，以确保您了解任何限制和禁止。
 
  您可以在以下网址找到此流程的Node RED信息:
+```json
+[{"id":"23fa21f1.dc05de","type":"tcp request","server":"www.google.com","port":"80","out":"time","splitc":"1000","name":"","x":241.99984741210938,"y":131.0909194946289,"z":"b7bbf3c7.48441","wires":[["7bcbd7c9.843428"]]},{"id":"3f8055d.fc07faa","type":"inject","name":"","topic":"","payload":"GET / HTTP/1.1\\r\\n\\r\\nHost: www.google.com","payloadType":"string","repeat":"","crontab":"","once":false,"x":94,"y":33.0909423828125,"z":"b7bbf3c7.48441","wires":[["da6be638.259418"]]},{"id":"8e76964b.718968","type":"debug","name":"","active":true,"console":"false","complete":"payload","x":456.9999542236328,"y":217.09092712402344,"z":"b7bbf3c7.48441","wires":[]},{"id":"7bcbd7c9.843428","type":"function","name":"Parse response buffer into string","func":"msg.payload = msg.payload.toString('utf8');\nreturn msg;","outputs":1,"noerr":0,"x":342.9999694824219,"y":174.0909194946289,"z":"b7bbf3c7.48441","wires":[["8e76964b.718968"]]},{"id":"da6be638.259418","type":"function","name":"Set GET request string","func":"msg.payload = \"GET / HTTP/1.1\\r\\n\\r\\nHost: www.google.com\"\nreturn msg;","outputs":1,"noerr":0,"x":151,"y":88.0909423828125,"z":"b7bbf3c7.48441","wires":[["23fa21f1.dc05de"]]}]
+```
 
-[https://raw.githubusercontent.com/SenseTecnic/nrguideflows/master/lesson3/3-8_tcp.json](https://www.google.com/url?q=https://raw.githubusercontent.com/SenseTecnic/nrbookflows/master/lesson3/3-8_tcp.json&sa=D&usg=AFQjCNFeOCz4I89JaGM8O7hiQeWHeyTE1g)
 
 ## 总结
 
@@ -251,3 +263,5 @@ tcp request节点响应是一个缓冲区，需要解析。 配置第二个功�
 在这些示例中，您只是做了很少或没有编码，但仍然能够构建相当复杂的程序 ——这就是Node-RED的强大功能。
 
 下一个讲座是对简易Node-RED中可用的基本节点的集合整理以及FRED服务提供的扩展库的快速汇总。 您可以阅读讲座来了解默认功能，您也可以将讲座作为参考，并使用它来查找本讲座系列中使用的每个节点的示例。这节课将介绍Node-RED可视化工具,让你开始建立你的第一个流。您将学习如何创建简单的流,通过使用调试节点跟踪消息流以及如何使用function节点编写简单的JavaScript代码,调整节点以适应您的具体需求。
+
+
