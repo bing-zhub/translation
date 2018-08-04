@@ -31,109 +31,15 @@
 
 输出节点基本上是输入节点的基本集合的镜像，并提供了一种在同一组协议（即mqtt，http，udp等）上发送数据的方法。
 
-| 
-节点名称
-
- | 
-
-简述
-
- | 
-
-样例
-
- |
-| 
-
-debug
-
- | 
-
-提供一种查看调试窗格中显示的消息的简单方法。  可以配置为仅显示msg.payload或整个msg对象。
-
- | 
-
-Various, examples 2.1, 2.2, 3.1-3.6, 5.1-5.4, 6.1-6.5
-
- |
-| 
-
-mqtt
-
- | 
-
-订阅一个MQTT代理，并将其在传入消息中接收的任何数据（msg.payload）发布到主题。  支持服务质量水平和最后的数据保留。
-
- | 
-
-Example 3.6
-
- |
-| 
-
-http
-
- | 
-
-将响应发送回HTTP输入节点收到的HTTP请求。  响应主体由msg.payload确定，并且可以定义标题和状态代码。
-
- | 
-
-Examples
-
- |
-| 
-
-websocket
-
- | 
-
-在配置的websocket上发送msg.payload。  如果定义了msg. session，则发送给始发客户端，否则广播到所有连接的客户端
-
- | 
-
-Example 3.7
-
- |
-| 
-
-tcp
-
- | 
-
-回复配置的TCP端口。  也可以用来发送到特定端口。
-
- | 
-
-Example 3.8
-
- |
-| 
-
-udp
-
- | 
-
-向配置的主机（IP地址）和端口发送UDP消息。  支持广播  像大多数节点一样，通过UI或消息属性进行配置。
-
- | 
-
-Examples
-
- |
-| 
-
-serial out
-
- | 
-
-发送到定义的串行端口。  可以配置为在任何消息有效载荷之后发送可选的换行符。
-
- | 
-
-Examples lecture 7
-
- |
+| 节点名称 | 简述 | 样例 |
+| --- | --- | --- |
+| debug | 提供一种查看调试窗格中显示的消息的简单方法。  可以配置为仅显示msg.payload或整个msg对象。 | Various, examples 2.1, 2.2, 3.1-3.6, 5.1-5.4, 6.1-6.5 |
+| mqtt | 订阅一个MQTT代理，并将其在传入消息中接收的任何数据（msg.payload）发布到主题。  支持服务质量水平和最后的数据保留。| Example 3.6 | 
+| http | 将响应发送回HTTP输入节点收到的HTTP请求。  响应主体由msg.payload确定，并且可以定义标题和状态代码。 | Examples |
+| websocket | 在配置的websocket上发送msg.payload。  如果定义了msg. session，则发送给始发客户端，否则广播到所有连接的客户端 | Example 3.7 |
+| tcp | 回复配置的TCP端口。  也可以用来发送到特定端口。| Example 3.8|
+| udp | 向配置的主机（IP地址）和端口发送UDP消息。  支持广播  像大多数节点一样，通过UI或消息属性进行配置。| Examples |
+| serial out | 发送到定义的串行端口。  可以配置为在任何消息有效载荷之后发送可选的换行符。| Examples lecture 7 |
 
 ## 功能节点
 
