@@ -35,6 +35,8 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 labelencoder_X = LabelEncoder()
 X[ : , 0] = labelencoder_X.fit_transform(X[ : , 0])
 ```
+分类数据是一些包含了标签值而非数字值得变量. 可能值得个数往往局限于固定的集合. 数据例如"Yes" 和 "No" 不可用于模型中的数学方程, 所以我们需要把这些数据编码为数字. 为了实现编码,我们引入sklearn.preprocessing库中的LabelEncoder类.
+
 ### 创建模型变量
 ```python
 onehotencoder = OneHotEncoder(categorical_features = [0])
@@ -47,7 +49,7 @@ Y =  labelencoder_Y.fit_transform(Y)
 from sklearn.cross_validation import train_test_split
 X_train, X_test, Y_train, Y_test = train_test_split( X , Y , test_size = 0.2, random_state = 0)
 ```
-
+我们对数据集进行两个划分, 一个用来训练,被称作训练集. 另一个被用来测试训练过后模型的性能,被称作测试集. 数据集通常使用82分. 通过引入sklearn.crossvalidation库中的train_test_split()方法实现划分.
 ## 步骤 6: 特征缩放
 ```python
 from sklearn.preprocessing import StandardScaler
@@ -55,5 +57,6 @@ sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.fit_transform(X_test)
 ```
+大多数机器学习算法在运算中使用两个数据点的Euclidean距离,与在幅度/单位和范围姿势问题上具有高度变化的特征.高幅度特征会比低幅度特征在距离计算中增加更大的权重. 这一切通过特征标准化和z-score标准化完成. 代码由sklearn.preprocessing中的StandardScalar完成.
 ### 结束 :smile:
 
