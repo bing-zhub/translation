@@ -9,7 +9,7 @@
 ### [Node-RED第一个流](https://github.com/bing-zhub/translation/blob/master/Node-RED%20Tutorial/Node-RED%20Tutorial%202%20--%20%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%B5%81.md)
 ### [Node-RED基础节点和流](https://github.com/bing-zhub/translation/blob/master/Node-RED%20Tutorial/Node-RED%20Tutorial%203%20--%20%E5%9F%BA%E7%A1%80%E8%8A%82%E7%82%B9%E5%92%8C%E6%B5%81.md)
 
-## [Deep Learning](https://github.com/bing-zhub/translation/tree/master/Grokking-Deep-Learning)
+## [Grokking-Deep-Learning](https://github.com/bing-zhub/translation/tree/master/Grokking-Deep-Learning)
 
 
 
