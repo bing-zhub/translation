@@ -12,15 +12,15 @@ Cypher是一种声明式图数据库查询语言, 类似关系型数据库中的
 eg: 小猪佩奇
 
 ## 创建基础节点
-create (:pig{name:"猪爷爷", age:12}), (:pig{name:"猪奶奶", age:11})
+`create (:pig{name:"猪爷爷", age:12}), (:pig{name:"猪奶奶", age:11})`
 ## 基于现有节点创建关系
-match (a:pig{name:"猪爷爷"}) match(b:pig{name:"猪奶奶"}) create (a)-[r:夫妻]->(b)
+`match (a:pig{name:"猪爷爷"}) match(b:pig{name:"猪奶奶"}) create (a)-[r:夫妻]->(b)`
 ## 创建关系和节点
-create (:pig{name:"猪爸爸",age:12}) -[:夫妻]->(:pig{name:"猪妈妈", age:9})
+`create (:pig{name:"猪爸爸",age:12}) -[:夫妻]->(:pig{name:"猪妈妈", age:9})`
 ## 修改属性
-match (a:pig{name:"猪爸爸",age:12}) set a.age=5;
+`match (a:pig{name:"猪爸爸",age:12}) set a.age=5;`
 ## 创建多标签节点
-create (a:pig:die{name:"猪祖宗", age:16}) return a.name;
+`create (a:pig:die{name:"猪祖宗", age:16}) return a.name;`
 ## 删除节点
-match (n:die) delete n;
+`match (n:die) delete n;`
 
